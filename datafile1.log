@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/davidwan/Downloads/MRP Project/datafile1.log
+  log type:  text
+ opened on:   2 Nov 2018, 06:11:12
+
+. *Create log file
+. 
+. clear
+
+. 
+. 
+. import sasxport LLCP2017.XPT
+file LLCP2017.XPT not found
+r(601);
+
+end of do-file
+
+r(601);
+
+. do "/var/folders/bq/_s8vbhy91kz3b858vc4j4bqw0000gn/T//SD46361.000000"
+
+. * Datafile used: NSDUH_2014.dta
+. * Author: David Wan
+. * Date: November 2, 2018
+. * Sample Size: n=55271
+. * Data source: NSDHU 2014 cycle
+. capture log close

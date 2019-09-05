@@ -1,0 +1,297 @@
+-----------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/davidwan/Downloads/MRP Project/fmmglmanalysis.log
+  log type:  text
+ opened on:   6 Dec 2018, 05:58:10
+
+. * Create log file
+. 
+. clear
+
+. use "/Users/davidwan/Downloads/MRP Project/NSDUHcleanfinal.dta"
+
+. * Use combined NSDUH dataset which has been cleaned
+. set more off
+
+. 
+. drop if minor == 1
+(20,584 observations deleted)
+
+. * 20584 minor with employment observerations dropped 
+. 
+. * Marijuana Use participation in last month
+. gen marjmthpart = 1
+
+. replace marjmthpart = 0 if marjmth == 0
+(111,187 real changes made)
+
+. 
+. drop if marjmth == 0
+(111,187 observations deleted)
+
+. 
+. fmm marjmth tenkorlower tenkto20k twentykto30k thirtykto40k fourtykto50k fiftykto75k MEDMJLAW lessthanhs somecol colgrad bl
+> ack nativeam nativehi asian hispanic multirace male under20 twenty6to29 thirtyto34 thirty5to49 fiftyto64 sixty5andover, com
+> ponents (2) mixtureof(normal) 
+
+Fitting Normal regression model:
+
+Iteration 0:   log likelihood = -57864.149  
+Iteration 1:   log likelihood = -57864.139  
+Iteration 2:   log likelihood = -57864.139  
+
+Fitting 2 component Normal model:
+
+Iteration 0:   log likelihood =  -57866.28  (not concave)
+Iteration 1:   log likelihood = -57864.242  (not concave)
+Iteration 2:   log likelihood = -57864.127  (not concave)
+Iteration 3:   log likelihood = -57864.001  (not concave)
+Iteration 4:   log likelihood = -57863.497  (not concave)
+Iteration 5:   log likelihood = -57861.916  (not concave)
+Iteration 6:   log likelihood = -57859.468  (not concave)
+Iteration 7:   log likelihood = -57836.855  (not concave)
+Iteration 8:   log likelihood = -57577.385  (not concave)
+Iteration 9:   log likelihood = -56287.796  (not concave)
+Iteration 10:  log likelihood = -55830.702  (not concave)
+Iteration 11:  log likelihood = -55049.209  (not concave)
+Iteration 12:  log likelihood = -54879.004  (not concave)
+Iteration 13:  log likelihood = -54793.167  (not concave)
+Iteration 14:  log likelihood = -54683.136  (not concave)
+Iteration 15:  log likelihood = -54573.824  (not concave)
+Iteration 16:  log likelihood = -54485.005  (not concave)
+Iteration 17:  log likelihood = -54290.455  (not concave)
+Iteration 18:  log likelihood = -53879.826  (not concave)
+Iteration 19:  log likelihood = -53631.897  (not concave)
+Iteration 20:  log likelihood = -53459.654  (not concave)
+Iteration 21:  log likelihood =  -53374.83  (not concave)
+Iteration 22:  log likelihood = -53212.483  (not concave)
+Iteration 23:  log likelihood = -53048.923  
+Iteration 24:  log likelihood = -52723.549  (not concave)
+Iteration 25:  log likelihood = -52668.893  
+Iteration 26:  log likelihood = -52629.869  
+Iteration 27:  log likelihood = -52622.979  
+Iteration 28:  log likelihood = -52622.968  
+Iteration 29:  log likelihood = -52622.968  
+
+2 component Normal regression                   Number of obs     =     15,060
+                                                Wald chi2(46)     =     467.60
+Log likelihood = -52622.968                     Prob > chi2       =     0.0000
+
+-------------------------------------------------------------------------------
+      marjmth |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------+----------------------------------------------------------------
+component1    |
+  tenkorlower |   .2081042   .0926513     2.25   0.025     .0265109    .3896975
+    tenkto20k |   .4556609   .0953968     4.78   0.000     .2686867    .6426352
+ twentykto30k |   .3786548   .1009339     3.75   0.000     .1808279    .5764816
+ thirtykto40k |    .289066   .1053316     2.74   0.006     .0826199    .4955122
+ fourtykto50k |   .1298494   .1040183     1.25   0.212    -.0740226    .3337215
+  fiftykto75k |   .2006133   .0921725     2.18   0.030     .0199586    .3812681
+     MEDMJLAW |   .1641309   .0559616     2.93   0.003     .0544482    .2738137
+   lessthanhs |   .0625283   .0947435     0.66   0.509    -.1231655    .2482221
+      somecol |  -.2943605   .0708345    -4.16   0.000    -.4331936   -.1555274
+      colgrad |  -.6875999   .0850885    -8.08   0.000    -.8543704   -.5208294
+        black |    .597117   .0814148     7.33   0.000     .4375469     .756687
+     nativeam |   .2708489   .2084071     1.30   0.194    -.1376215    .6793193
+     nativehi |   .0993865   .3715931     0.27   0.789    -.6289226    .8276957
+        asian |  -.3324705   .1771381    -1.88   0.061    -.6796548    .0147138
+     hispanic |   .0483054   .0813085     0.59   0.552    -.1110564    .2076671
+    multirace |    .121611   .1361248     0.89   0.372    -.1451886    .3884106
+         male |   .2465669   .0553357     4.46   0.000     .1381109     .355023
+      under20 |  -.2274208   .0894908    -2.54   0.011    -.4028195   -.0520221
+  twenty6to29 |   .0138353   .0954137     0.15   0.885     -.173172    .2008427
+   thirtyto34 |   .1908488   .0952713     2.00   0.045     .0041204    .3775772
+  thirty5to49 |   .1196989   .0793465     1.51   0.131    -.0358174    .2752152
+    fiftyto64 |    .202949   .1183939     1.71   0.086    -.0290987    .4349968
+sixty5andover |  -.2085053   .2825539    -0.74   0.461    -.7623008    .3452902
+        _cons |   2.653303   .1045979    25.37   0.000     2.448295    2.858311
+--------------+----------------------------------------------------------------
+component2    |
+  tenkorlower |    .723754   .3144642     2.30   0.021     .1074156    1.340092
+    tenkto20k |   1.064356   .3023271     3.52   0.000     .4718055    1.656906
+ twentykto30k |   .9351447    .306027     3.06   0.002     .3353428    1.534947
+ thirtykto40k |   1.354359   .3220364     4.21   0.000     .7231788    1.985538
+ fourtykto50k |   .5026938   .3332726     1.51   0.131    -.1505084    1.155896
+  fiftykto75k |   .9832248   .3039719     3.23   0.001     .3874509    1.578999
+     MEDMJLAW |   .5900726   .1773694     3.33   0.001      .242435    .9377102
+   lessthanhs |   .3059904   .2627043     1.16   0.244    -.2089005    .8208812
+      somecol |  -.7707863   .2086422    -3.69   0.000    -1.179717   -.3618552
+      colgrad |  -2.332803   .2916579    -8.00   0.000    -2.904442   -1.761164
+        black |   -.199895   .2522889    -0.79   0.428    -.6943721     .294582
+     nativeam |  -.6829919   .5487326    -1.24   0.213    -1.758488    .3925042
+     nativehi |  -.3634505   1.128291    -0.32   0.747     -2.57486    1.847959
+        asian |  -1.223043   .7975364    -1.53   0.125    -2.786185    .3400998
+     hispanic |  -.4425632   .2678673    -1.65   0.098    -.9675735     .082447
+    multirace |    -.23012     .37841    -0.61   0.543      -.97179      .51155
+         male |   .8833127   .1807878     4.89   0.000     .5289751     1.23765
+      under20 |  -1.927302   .2902207    -6.64   0.000    -2.496124    -1.35848
+  twenty6to29 |   .2098337   .2806152     0.75   0.455    -.3401619    .7598294
+   thirtyto34 |   .3342523   .2922323     1.14   0.253    -.2385124    .9070171
+  thirty5to49 |  -.2651368    .252752    -1.05   0.294    -.7605215     .230248
+    fiftyto64 |  -1.278143   .4033634    -3.17   0.002     -2.06872   -.4875649
+sixty5andover |  -3.481656   .8587968    -4.05   0.000    -5.164867   -1.798445
+        _cons |   22.50863   .3307096    68.06   0.000     21.86045    23.15681
+--------------+----------------------------------------------------------------
+  /imlogitpi1 |  -.4180284   .0197053   -21.21   0.000      -.45665   -.3794068
+    /lnsigma1 |   .6377868   .0159599    39.96   0.000      .606506    .6690676
+    /lnsigma2 |   2.016714   .0107944   186.83   0.000     1.995558    2.037871
+-------------------------------------------------------------------------------
+      sigma1 |   1.892288   .0302007                      1.834012    1.952416
+      sigma2 |   7.513598    .081105                      7.356305    7.674254
+         pi1 |   .3969886   .0047172                      .3877808      .40627
+         pi2 |   .6030114   .0047172                        .59373    .6122192
+------------------------------------------------------------------------------
+
+. estat ic
+
+Akaike's information criterion and Bayesian information criterion
+
+-----------------------------------------------------------------------------
+       Model |        Obs  ll(null)  ll(model)      df         AIC        BIC
+-------------+---------------------------------------------------------------
+           . |     15,060         .  -52622.97      51    105347.9   105736.5
+-----------------------------------------------------------------------------
+               Note: N=Obs used in calculating BIC; see [R] BIC note.
+
+. 
+. fmm marjmth tenkorlower tenkto20k twentykto30k thirtykto40k fourtykto50k fiftykto75k MEDMJLAW lessthanhs somecol colgrad bl
+> ack nativeam nativehi asian hispanic multirace male under20 twenty6to29 thirtyto34 thirty5to49 fiftyto64 sixty5andover, com
+> ponents (2) mixtureof(poisson) 
+
+Fitting Poisson model:
+
+Iteration 0:   log likelihood = -104587.75  
+Iteration 1:   log likelihood = -104587.75  
+
+Fitting 2 component Poisson model:
+
+Iteration 0:   log likelihood = -104196.51  (not concave)
+Iteration 1:   log likelihood = -67364.263  
+Iteration 2:   log likelihood = -54631.288  
+Iteration 3:   log likelihood = -53408.411  
+Iteration 4:   log likelihood = -53395.066  
+Iteration 5:   log likelihood = -53395.058  
+Iteration 6:   log likelihood = -53395.058  
+
+2 component Poisson regression                  Number of obs     =     15,060
+                                                Wald chi2(46)     =     797.75
+Log likelihood = -53395.058                     Prob > chi2       =     0.0000
+
+-------------------------------------------------------------------------------
+      marjmth |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------+----------------------------------------------------------------
+component1    |
+  tenkorlower |   .0529148   .0255944     2.07   0.039     .0027508    .1030788
+    tenkto20k |   .1433046   .0250854     5.71   0.000     .0941381    .1924711
+ twentykto30k |   .1757293    .025339     6.94   0.000     .1260657    .2253928
+ thirtykto40k |   .1409464   .0277819     5.07   0.000      .086495    .1953978
+ fourtykto50k |    .100903   .0277407     3.64   0.000     .0465322    .1552738
+  fiftykto75k |   .1050249   .0252524     4.16   0.000     .0555311    .1545187
+     MEDMJLAW |   .0570552    .014671     3.89   0.000     .0283006    .0858099
+   lessthanhs |    .033016    .022205     1.49   0.137     -.010505     .076537
+      somecol |  -.1034191   .0177834    -5.82   0.000    -.1382739   -.0685643
+      colgrad |   -.278611   .0237854   -11.71   0.000    -.3252296   -.2319925
+        black |   .1553845    .019275     8.06   0.000     .1176063    .1931628
+     nativeam |   .1090975   .0482156     2.26   0.024     .0145967    .2035983
+     nativehi |  -.0887418    .108237    -0.82   0.412    -.3008824    .1233987
+        asian |  -.1500366   .0521755    -2.88   0.004    -.2522987   -.0477745
+     hispanic |  -.0166773   .0216642    -0.77   0.441    -.0591384    .0257838
+    multirace |   .1029847   .0335074     3.07   0.002     .0373115     .168658
+         male |   .1268833   .0145696     8.71   0.000     .0983274    .1554391
+      under20 |    -.05794   .0231621    -2.50   0.012    -.1033369   -.0125431
+  twenty6to29 |   1.52e-06   .0249976     0.00   1.000    -.0489928    .0489959
+   thirtyto34 |   .0394215   .0239751     1.64   0.100    -.0075689    .0864118
+  thirty5to49 |   -.009675   .0213277    -0.45   0.650    -.0514766    .0321266
+    fiftyto64 |   .0520302   .0286768     1.81   0.070    -.0041754    .1082357
+sixty5andover |  -.0259655   .0732491    -0.35   0.723    -.1695311    .1176001
+        _cons |   1.202346   .0271578    44.27   0.000     1.149118    1.255574
+--------------+----------------------------------------------------------------
+component2    |
+  tenkorlower |   .0220534   .0089159     2.47   0.013     .0045784    .0395283
+    tenkto20k |   .0330562   .0085168     3.88   0.000     .0163636    .0497489
+ twentykto30k |   .0358576     .00859     4.17   0.000     .0190215    .0526938
+ thirtykto40k |   .0459424   .0090572     5.07   0.000     .0281906    .0636942
+ fourtykto50k |   .0225251   .0094935     2.37   0.018     .0039182     .041132
+  fiftykto75k |    .034275   .0086353     3.97   0.000     .0173502    .0511998
+     MEDMJLAW |   .0246519   .0049857     4.94   0.000     .0148802    .0344236
+   lessthanhs |   .0167409   .0072395     2.31   0.021     .0025518      .03093
+      somecol |  -.0243111   .0058127    -4.18   0.000    -.0357037   -.0129184
+      colgrad |  -.0732453   .0083943    -8.73   0.000    -.0896979   -.0567927
+        black |   .0116316   .0069467     1.67   0.094    -.0019836    .0252468
+     nativeam |  -.0181803   .0155614    -1.17   0.243      -.04868    .0123194
+     nativehi |  -.0434067   .0318175    -1.36   0.172    -.1057678    .0189544
+        asian |  -.0092157   .0221669    -0.42   0.678    -.0526621    .0342306
+     hispanic |  -.0082704   .0074915    -1.10   0.270    -.0229536    .0064128
+    multirace |   .0039017   .0107373     0.36   0.716    -.0171429    .0249464
+         male |   .0269861   .0050833     5.31   0.000     .0170231    .0369492
+      under20 |  -.0536633   .0083701    -6.41   0.000    -.0700684   -.0372581
+  twenty6to29 |   .0010166   .0077775     0.13   0.896    -.0142271    .0162602
+   thirtyto34 |    .014724    .007998     1.84   0.066    -.0009517    .0303998
+  thirty5to49 |  -.0131255   .0070869    -1.85   0.064    -.0270155    .0007645
+    fiftyto64 |  -.0190824   .0112556    -1.70   0.090    -.0411429    .0029781
+sixty5andover |  -.1216681   .0268502    -4.53   0.000    -.1742934   -.0690427
+        _cons |   3.183265   .0091689   347.18   0.000     3.165295    3.201236
+--------------+----------------------------------------------------------------
+  /imlogitpi1 |  -.1418637   .0167508    -8.47   0.000    -.1746946   -.1090327
+-------------------------------------------------------------------------------
+         pi1 |   .4645934   .0041667                      .4564371    .4727688
+         pi2 |   .5354066   .0041667                      .5272312    .5435629
+------------------------------------------------------------------------------
+
+. estat ic
+
+Akaike's information criterion and Bayesian information criterion
+
+-----------------------------------------------------------------------------
+       Model |        Obs  ll(null)  ll(model)      df         AIC        BIC
+-------------+---------------------------------------------------------------
+           . |     15,060         .  -53395.06      49    106888.1   107261.5
+-----------------------------------------------------------------------------
+               Note: N=Obs used in calculating BIC; see [R] BIC note.
+
+. 
+. histogram marjmth, frequency
+(bin=41, start=1, width=.70731707)
+
+. *fmm marjmth tenkorlower tenkto20k twentykto30k thirtykto40k fourtykto50k fiftykto75k MEDMJLAW lessthanhs somecol colgrad m
+> inor black nativeam nativehi asian hispanic multirace male under20 twenty6to29 thirtyto34 thirty5to49 fiftyto64 sixty5andov
+> er, components (2) mixtureof(negbin2) difficult search(on)
+. 
+. *reg marjmth tenkorlower tenkto20k twentykto30k thirtykto40k fourtykto50k fiftykto75k MEDMJLAW lessthanhs somecol colgrad m
+> inor black nativeam nativehi asian hispanic multirace male under20 twenty6to29 thirtyto34 thirty5to49 fiftyto64 sixty5andov
+> er
+. 
+. *ovtest 
+. 
+. *glm marjmth tenkorlower tenkto20k twentykto30k thirtykto40k fourtykto50k fiftykto75k MEDMJLAW lessthanhs somecol colgrad m
+> inor black nativeam nativehi asian hispanic multirace male under20 twenty6to29 thirtyto34 thirty5to49 fiftyto64 sixty5andov
+> er
+. *linktest
+. 
+. *boxcox marjmth tenkorlower tenkto20k twentykto30k thirtykto40k fourtykto50k fiftykto75k MEDMJLAW lessthanhs somecol colgra
+> d minor black nativeam nativehi asian hispanic multirace male under20 twenty6to29 thirtyto34 thirty5to49 fiftyto64 sixty5an
+> dover
+. 
+end of do-file
+
+. gen logmarjmth = log marjmth
+log not found
+r(111);
+
+. gen logmarjmth = log(marjmth)
+
+. histogram logmarjmth, frequency
+(bin=41, start=0, width=.08295603)
+
+. putexcel set /Users/davidwan/Downloads/MRP Project/MRP FMM results.xlsx
+invalid 'Project' 
+r(198);
+
+. putexcel set /Users/davidwan/Downloads/MRP Project/Untitled.xlsx
+invalid 'Project' 
+r(198);
+
+. putexcel set /Users/davidwan/Downloads/Untitled.xlsx
+
+. putexcel set /Users/davidwan/Desktop/Untitled.xlsx
+
